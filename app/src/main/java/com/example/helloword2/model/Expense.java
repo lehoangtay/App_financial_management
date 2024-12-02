@@ -7,17 +7,17 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.helloword2.DatabaseHelper;
 
-public class Budget {
+public class Expense {
     private DatabaseHelper dbHelper;
     private Integer id;
     private int amount;
-    private int remaining;
     private Integer categoryId;
     private Integer userId;
-    private String startDate;
-    private String endDate;
+    private String date;
+    private String note;
     private String categoryName;
-
+    private Category category;
+    private Context context;
     public String getCategoryName() {
         return categoryName;
     }
@@ -25,28 +25,39 @@ public class Budget {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
-    public void insertBudget(int amount, Integer categoryId, Integer userId, String startDate, String endDate) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("amount", amount);
-        values.put("remaining", amount);
-        values.put("category_id", categoryId);
-        values.put("user_id", userId);
-        values.put("start_date", startDate);
-        values.put("end_date", endDate);
-        db.insert("budgets", null, values);
-    }
-
-    public Budget(Context context) {
-        dbHelper = new DatabaseHelper(context);
-    }
-    public Budget(Integer id, int amount, Integer categoryId, Integer userId, String startDate, String endDate) {
+    public Expense(Integer id, int amount, Integer categoryId, Integer userId, String date) {
         this.setId(id);
         this.setAmount(amount);
         this.setCategoryId(categoryId);
         this.setUserId(userId);
-        this.setStartDate(startDate);
-        this.setEndDate(endDate);
+        this.setDate(date);
+    }
+
+    public void insertExpense(int amount, Integer categoryId, Integer userId,
+                              String date, String note) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("amount", amount);
+        values.put("category_id", categoryId);
+        values.put("user_id", userId);
+        values.put("date", date);
+        values.put("note", note);
+        db.insert("expense", null, values);
+    }
+    public void updateExpense() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("amount", this.getAmount());
+        values.put("category_id", this.getCategoryId());
+        values.put("date", this.getDate());
+        values.put("note", this.getNote());
+        db.update("expense", values, "id = ?", new String[]{String.valueOf(this.getId())});
+        db.close();
+    }
+
+
+    public Expense(Context context) {
+        dbHelper = new DatabaseHelper(context);
     }
 
     public Integer getId() {
@@ -69,7 +80,6 @@ public class Budget {
         return categoryId;
     }
 
-
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
@@ -82,28 +92,20 @@ public class Budget {
         this.userId = userId;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getNote() {
+        return note;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setNote(String note) {
+        this.note = note;
     }
 
-
-    public int getRemaining() {
-        return remaining;
-    }
-
-    public void setRemaining(int remaining) {
-        this.remaining = remaining;
-    }
 }
