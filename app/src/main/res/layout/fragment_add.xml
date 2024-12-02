@@ -1,99 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context=".fragment.AddFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Add Page"
-        android:textColor="#DD00FF"
-        android:textSize="29sp"
-        android:textStyle="bold" />
-
+    <!-- Container chính -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="240dp"
+        android:layout_height="0dp"
+    android:layout_margin="0dp"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:elevation="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <!-- Tiêu đề -->
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:text="Add Expense"
+        android:textColor="#FF5722"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextText3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Amount"
-            android:textSize="24sp" />
+    <!-- Đường kẻ -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="8dp"
+        android:background="#BDBDBD" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Amount"
-            android:textSize="17sp" />
+    <!-- Amount -->
+    <TextView
+        android:id="@+id/amountLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Amount"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextText4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Category"
-            android:textSize="24sp" />
+    <EditText
+        android:id="@+id/amountInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:backgroundTint="#FF5722"
+        android:hint="Enter an amount"
+        android:inputType="number"
+        android:textColor="#333333"
+        android:textColorHint="#757575" />
 
-        <Spinner
-            android:id="@+id/spinner3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17sp" />
+    <!-- Category -->
+    <TextView
+        android:id="@+id/categoryLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Category"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextText5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Notes"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/selectCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:background="#E0E0E0"
+        android:gravity="center_vertical"
+        android:text="Choose Category"
+        android:textColor="#333333"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Notes"
-            android:textSize="17sp" />
+    <!-- Notes -->
+    <TextView
+        android:id="@+id/notesLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Notes"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextText6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Date"
-            android:textSize="24sp" />
+    <EditText
+        android:id="@+id/noteInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:backgroundTint="#FF5722"
+        android:hint="Add a note"
+        android:inputType="text"
+        android:textColor="#333333"
+        android:textColorHint="#757575" />
 
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
-            android:textSize="17sp" />
+    <!-- Date -->
+    <TextView
+        android:id="@+id/dateLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Date"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="205dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="40dp"
-            android:text="Save" />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/dateInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:backgroundTint="#FF5722"
+        android:hint="Select date"
+        android:inputType="date"
+        android:textColor="#333333"
+        android:textColorHint="#757575" />
 
-</FrameLayout>
+    <!-- Nút Save -->
+    <Button
+        android:id="@+id/saveExpense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="12dp"
+        android:text="Save"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#FF5722"
+        android:textStyle="bold" />
+</LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

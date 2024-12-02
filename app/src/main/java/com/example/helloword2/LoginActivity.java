@@ -29,6 +29,12 @@ public class LoginActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.login_usersname_input);
         passwordInput = findViewById(R.id.login_password_input);
         loginButton = findViewById(R.id.loginbutton);
+        Auth auth = new Auth(getBaseContext());
+
+        if(auth.getUserId() > 0) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
                             cursor.getString(cursor.getColumnIndex("email"));
                     @SuppressLint("Range") String username  =
                             cursor.getString(cursor.getColumnIndex("username"));
-                    Auth auth = new Auth(getBaseContext());
                     auth.saveUser(id, name, phone,email,username);
 
 
