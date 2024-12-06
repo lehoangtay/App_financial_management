@@ -1,90 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F5F5F5"
-    tools:context=".fragment.HomeFragment">
+    tools:context=".fragment.HomeFragment"
+    android:background="#F8F9FA">
 
-    <!-- Phần tổng quan tài chính -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@android:color/white"
         android:padding="16dp"
-        android:elevation="4dp">
+        android:gravity="center_horizontal"
+        >
 
+        <!-- Tiêu đề -->
         <TextView
-            android:id="@+id/tvFinancialOverview"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tổng quan tài chính"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#000" />
+            android:text="Report This Month"
+            android:textSize="24sp"
+            android:textColor="#37474F"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
 
-        <TextView
-            android:id="@+id/tvBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Số dư: 10,000,000 VND"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp"
-            android:textColor="#4CAF50" />
+        <!-- Biểu đồ -->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="#FFFFFF"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:layout_margin="8dp" />
 
-        <TextView
-            android:id="@+id/tvIncome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Thu nhập: 15,000,000 VND"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"
-            android:textColor="#2196F3" />
-
-        <TextView
-            android:id="@+id/tvExpense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chi tiêu: 5,000,000 VND"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"
-            android:textColor="#F44336" />
     </LinearLayout>
 
-    <!-- Danh sách giao dịch gần đây -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Giao dịch gần đây"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:padding="8dp"
-        android:background="#E0E0E0"
-        android:textColor="#000" />
-
-    <ListView
-        android:id="@+id/recent_transactions_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp"
-        android:background="@android:color/white" />
-
-    <!-- Nút thêm giao dịch -->
-    <Button
-        android:id="@+id/add_transaction_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/purple_500"
-        android:text="Thêm giao dịch"
-        android:textColor="@android:color/white"
-        android:textSize="16sp" />
-</LinearLayout>
+</FrameLayout>

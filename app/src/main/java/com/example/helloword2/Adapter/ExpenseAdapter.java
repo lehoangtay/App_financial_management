@@ -1,9 +1,7 @@
 package com.example.helloword2.Adapter;
 
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helloword2.R;
+import com.example.helloword2.model.Budget;
 import com.example.helloword2.model.Category;
 import com.example.helloword2.model.Expense;
 
@@ -43,6 +42,13 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         holder.amountTextView.setText("Amount: $" + expense.getAmount());
         holder.categoryTextView.setText("Category: " + expense.getCategoryName());
         holder.dateTextView.setText("Date: " + expense.getDate());
+        holder.deteleExpense.setOnClickListener(view -> {
+            Expense deteleExpense = new Expense(view.getContext());
+            deteleExpense.deteleExpense(expense.getId());
+            expenses.remove(position);
+            notifyItemRemoved(position);
+            Toast.makeText(view.getContext(), "Expense deleted", Toast.LENGTH_SHORT).show();
+        });
         holder.itemView.setOnClickListener(view -> {
             View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.fragment_add, null);
             AlertDialog dialog = new AlertDialog.Builder(view.getContext())
@@ -57,11 +63,15 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
             EditText dateInput = dialogView.findViewById(R.id.dateInput);
             TextView selectCategory = dialogView.findViewById(R.id.selectCategory);
             // Điền dữ liệu hiện tại
+            TextView textView = dialogView.findViewById(R.id.textViewExpense);
+            textView.setText("Update an Expense");
+
             amountInput.setText(String.valueOf(expense.getAmount()));
             noteInput.setText(expense.getNote());
             dateInput.setText(expense.getDate());
             selectCategory.setText(expense.getCategoryName());
-
+            Button saveExpense = dialogView.findViewById(R.id.saveExpense);
+            saveExpense.setVisibility(View.INVISIBLE);
             // Xử lý chọn category
             selectCategory.setOnClickListener(v -> {
                 Category category = new Category(view.getContext());
@@ -137,12 +147,13 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     }
     static class ExpenseViewHolder extends RecyclerView.ViewHolder {
         TextView amountTextView,categoryTextView, dateTextView;
+        Button deteleExpense;
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
             amountTextView = itemView.findViewById(R.id.amountTextView);
+            deteleExpense = itemView.findViewById(R.id.deleteExpense);
             categoryTextView = itemView.findViewById(R.id.categoryTextView);
             dateTextView = itemView.findViewById(R.id.dateTextView);
         }
     }
 }
-

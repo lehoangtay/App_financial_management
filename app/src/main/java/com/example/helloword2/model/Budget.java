@@ -48,6 +48,11 @@ public class Budget {
         this.setStartDate(startDate);
         this.setEndDate(endDate);
     }
+//delete
+    public void deleteBudget(int budgetId) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete("budgets", "id = ?", new String[]{String.valueOf(budgetId)});
+    }
 
     public Integer getId() {
         return id;
